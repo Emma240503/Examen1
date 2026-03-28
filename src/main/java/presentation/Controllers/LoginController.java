@@ -1,6 +1,7 @@
 package presentation.Controllers;
 
 import jakarta.servlet.http.HttpSession;
+import org.example.examen1.Farmacia;
 import org.example.examen1.Service;
 import org.example.examen1.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.example.examen1.Farmacia;
 
 @Controller
 public class LoginController {
@@ -31,8 +33,16 @@ public class LoginController {
 
         session.setAttribute("usuarioId",  u.getId());
         session.setAttribute("usuarioRol", u.getRol());
+        Farmacia farmacia = service.getFarmaciaDeUsuario(u.getId());
+        if (farmacia != null) {
+            session.setAttribute("farmaciaNombre", farmacia.getNombre());
+        }
         return "redirect:/plan";
+
     }
+
+
+
 
     @GetMapping("/logout")
     public String logout(HttpSession session) {

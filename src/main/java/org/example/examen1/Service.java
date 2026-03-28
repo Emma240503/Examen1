@@ -16,6 +16,9 @@ public class Service {
     private PacienteRepository pacienteRepo;
     @Autowired
     private PacienteMedicamentoRepository pmRepo;
+    @Autowired
+    private FarmaciaRepository farmaciaRepo;
+
 
     public Usuario login(String id, String clave) {
         Usuario u = usuarioRepo.findById(id).orElse(null);
@@ -47,6 +50,12 @@ public class Service {
         pm.setDosisafavor(pm.getDosisafavor() - plan);
         pmRepo.save(pm);
         return null;
+    }
+
+
+
+    public Farmacia getFarmaciaDeUsuario(String usuarioId) {
+        return farmaciaRepo.findByUsuario_Id(usuarioId);
     }
 }
 

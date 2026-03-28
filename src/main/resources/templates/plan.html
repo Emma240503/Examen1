@@ -6,7 +6,8 @@
 <nav th:replace="~{fragments :: nav}"></nav>
 <main>
     <div class="card">
-        <h1>Plan Paciente</h1>
+        <h1 th:text="${session.farmaciaNombre}"></h1>
+        <p class="farmacia-nombre"></p>
 
         <!-- BÚSQUEDA -->
         <form th:action="@{/plan}" method="get" class="buscar-form">
