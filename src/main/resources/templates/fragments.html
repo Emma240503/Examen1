@@ -4,31 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title th:text="${pageTitle} ?: 'Plan Paciente'">Plan Paciente</title>
-    <link rel="stylesheet" th:href="@{/css/base.css}">
-    <link rel="stylesheet" th:href="@{/css/layout.css}">
-    <link rel="stylesheet" th:href="@{/css/buttons.css}">
+    <link rel="stylesheet" th:href="@{/static/layout.css}">
     <link rel="stylesheet" th:if="${extraCss != null}" th:href="@{${extraCss}}">
 </head>
 
 <header th:fragment="header">
-    <a class="header-brand" th:href="@{/}">
-        <img th:src="@{/images/header.jpg}" style="height:40px; margin-right:10px; vertical-align:middle;">
-        Plan Paciente
-    </a>
+    <img th:src="@{/images/header.jpg}" alt="Patient Care">
 </header>
 
 <nav th:fragment="nav">
-    <a th:href="@{/plan}" th:if="${session.usuarioId != null}">Plan Paciente</a>
-    <div class="nav-right">
-        <div th:if="${session.usuarioId != null}">
-            <span class="nav-user" th:text="${session.usuarioId}">Usuario</span>
-            <a class="btn-salir" th:href="@{/logout}">Logout</a>
-        </div>
+    <span class="nav-center" th:if="${session.usuarioId != null}" th:text="${session.usuarioId}">Usuario</span>
+    <div class="nav-right" th:if="${session.usuarioId != null}">
+        <a class="btn-salir" th:href="@{/logout}">LOGOUT</a>
     </div>
 </nav>
 
 <footer th:fragment="footer">
-    <div><p>Todos los derechos reservados. 2026 . TotalSoft Inc. info@tsinc.com</p></div>
+    <p>Todos los derechos reservados . 2026 . TotalSoft Inc. info@tsinc.com</p>
 </footer>
 
 </html>

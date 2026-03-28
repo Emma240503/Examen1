@@ -6,75 +6,55 @@
 <nav th:replace="~{fragments :: nav}"></nav>
 <main>
     <div class="card">
-        <h1 th:text="${session.farmaciaNombre}"></h1>
-        <p class="farmacia-nombre"></p>
+
+        <!-- FARMACIA -->
+        <h1 class="farmacia-titulo">
+            <span class="label">Farmacia: </span>
+            <span class="nombre" th:text="${session.farmaciaNombre}"></span>
+        </h1>
 
         <!-- BÚSQUEDA -->
-        <form th:action="@{/plan}" method="get" class="buscar-form">
+        <form th:action="@{/plan}" method="get">
             <div class="buscar-row">
-                <label for="cedula">ID del paciente</label>
-                <input id="cedula" type="text" name="cedula"
-                       th:value="${cedula}" placeholder="Ej: 111" required>
+                <label for="cedula">Paciente:</label>
+                <input id="cedula" type="text" name="cedula" th:value="${cedula}" placeholder="Ej: 111">
                 <button type="submit" class="btn-buscar">Buscar</button>
+                <span class="paciente-nombre" th:if="${paciente != null}" th:text="${paciente.nombre}"></span>
+                <span class="no-encontrado" th:if="${cedula != null and paciente == null}">Paciente no encontrado</span>
             </div>
         </form>
 
-        <!-- ERROR REGALÍA -->
-        <div class="alert-error" th:if="${error != null}" th:text="${error}"></div>
+        <!-- MEDICAMENTOS -->
+        <div th:if="${paciente != null and medicamentos != null and medicamentos.size() > 0}">
 
-        <!-- RESULTADO -->
-        <div th:if="${cedula != null}">
+            <div class="alert-error" th:if="${error != null}" th:text="${error}"></div>
 
-            <p class="no-encontrado" th:if="${paciente == null}">Paciente no encontrado</p>
-
-            <div th:if="${paciente != null}">
-                <h2>
-                    Paciente: <span th:text="${paciente.nombre}"></span>
-                    <span class="cedula-badge" th:text="'(' + ${paciente.id} + ')'"></span>
-                </h2>
-
-                <table th:if="${medicamentos != null and medicamentos.size() > 0}">
-                    <thead>
-                    <tr>
-                        <th>Medicamento</th>
-                        <th>Plan</th>
-                        <th>Acumuladas</th>
-                        <th>Registrar Compra</th>
-                        <th>Entregar </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="pm : ${medicamentos}">
-                        <td th:text="${pm.medicamento.nombre}"></td>
-                        <td th:text="${pm.medicamento.plan} + '+1'"></td>
-                        <td>[<span th:text="${pm.dosisafavor}"></span>]</td>
-                        <td>
-                            <form th:action="@{/plan/compra}" method="post" class="inline-form">
-                                <input type="hidden" name="pmId" th:value="${pm.id}">
-                                <input type="hidden" name="cedula" th:value="${cedula}">
-                                <input type="number" name="cantidad" min="1" value="1" class="input-cant">
-                                <button type="submit" class="btn-registrar">Registrar</button>
-                            </form>
-                        </td>
-                        <td>
-                            <form th:action="@{/plan/regalia}" method="post" class="inline-form">
-                                <input type="hidden" name="pmId" th:value="${pm.id}">
-                                <input type="hidden" name="cedula" th:value="${cedula}">
-                                <button type="submit" class="btn-entregar">Entregar</button>
-                            </form>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-
-                <p class="vacio" th:if="${medicamentos == null or medicamentos.size() == 0}">
-                    Este paciente no tiene medicamentos asociados.
-                </p>
-            </div>
+            <form th:action="@{/plan/compra}" method="post">
+                <input type="hidden" name="cedula" th:value="${cedula}">
+                <div class="med-row">
+                    <label>Medicamento:</label>
+                    <select name="pmId">
+                        <option th:each="pm : ${medicamentos}"
+                                th:value="${pm.id}"
+                                th:text="${pm.medicamento.nombre + ' (' + pm.medicamento.plan + ' + 1) [' + pm.dosisafavor + ']'}">
+                        </option>
+                    </select>
+                    <span class="cant-label">Cant. Dosis:</span>
+                    <input type="number" name="cantidad" min="1" value="1">
+                </div>
+                <div class="acciones-row">
+                    <button type="submit" class="btn-registrar">Registrar</button>
+                    <button type="submit" formaction="/plan/regalia" class="btn-entregar">Entregar</button>
+                </div>
+            </form>
         </div>
+
+        <p class="vacio" th:if="${paciente != null and (medicamentos == null or medicamentos.size() == 0)}">
+            Este paciente no tiene medicamentos asociados.
+        </p>
+
     </div>
 </main>
 <footer th:replace="~{fragments :: footer}"></footer>
 </body>
 </html>
-

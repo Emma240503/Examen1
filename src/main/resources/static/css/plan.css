@@ -1,19 +1,30 @@
-main { flex: 1; padding: 32px 40px; width: min(1100px, 100%); }
-.card { background: #fff; border: 1px solid #d8dee9; border-radius: 10px; box-shadow: 0 8px 20px rgba(31,42,55,0.08); padding: 28px; }
-h1 { margin: 0 0 20px; font-size: 22px; font-weight: 700; color: #1f2a37; }
-h2 { margin: 20px 0 14px; font-size: 18px; color: #1f2a37; }
-.cedula-badge { font-size: 14px; color: #6b7280; font-weight: normal; }
-.buscar-form { margin-bottom: 20px; }
-.buscar-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
-.buscar-row label { font-size: 14px; color: #374151; white-space: nowrap; }
-.buscar-row input[type="text"] { padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; min-width: 160px; }
-table { width: 100%; border-collapse: collapse; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; }
-th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #e5e7eb; font-size: 14px; }
-th { background: #eef2f7; font-weight: 700; color: #1f2a37; }
-tr:last-child td { border-bottom: none; }
-.inline-form { display: flex; gap: 6px; align-items: center; }
-.input-cant { width: 60px; padding: 6px 8px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 13px; text-align: center; }
-.no-encontrado { color: #c00; font-weight: 700; font-size: 16px; margin-top: 10px; }
-.alert-error { background: #fdd; border: 1px solid #f99; border-radius: 4px; padding: 10px 12px; font-size: 13px; color: #c00; margin-bottom: 16px; }
-.vacio { color: #6b7280; font-style: italic; }
-.farmacia-nombre { margin: -10px 0 20px; color: #6b7280; font-size: 15px; }
+main { flex: 1; padding: 24px 40px; }
+
+.card { background: #fff; border: 1px solid #ccc; padding: 20px 28px; max-width: 700px; }
+
+.farmacia-titulo { margin: 0 0 20px; font-size: 28px; font-weight: 700; }
+.farmacia-titulo .label { color: #e05a1e; }
+.farmacia-titulo .nombre { color: #1a4f8a; }
+
+.buscar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
+.buscar-row label { font-weight: 700; color: #c0392b; font-size: 14px; }
+.buscar-row input[type="text"] { padding: 6px 10px; border: 1px solid #aaa; border-radius: 2px; font-size: 14px; width: 160px; }
+.btn-buscar { padding: 6px 14px; background: #1a4f8a; border: none; color: #fff; font-size: 14px; font-weight: 700; cursor: pointer; }
+.btn-buscar:hover { background: #14407a; }
+.paciente-nombre { font-weight: 700; color: #1a4f8a; font-size: 15px; }
+
+.med-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+.med-row label { font-weight: 700; color: #c0392b; font-size: 14px; }
+.med-row select { padding: 6px 10px; border: 1px solid #aaa; border-radius: 2px; font-size: 14px; min-width: 220px; }
+.med-row input[type="number"] { width: 70px; padding: 6px 8px; border: 1px solid #aaa; border-radius: 2px; font-size: 14px; text-align: center; }
+.cant-label { font-weight: 700; color: #c0392b; font-size: 14px; }
+
+.acciones-row { display: flex; gap: 10px; margin-top: 8px; }
+.btn-registrar { padding: 7px 16px; background: #1a4f8a; border: none; color: #fff; font-size: 13px; font-weight: 700; cursor: pointer; border-radius: 2px; }
+.btn-registrar:hover { background: #14407a; }
+.btn-entregar { padding: 7px 16px; background: #1a4f8a; border: none; color: #fff; font-size: 13px; font-weight: 700; cursor: pointer; border-radius: 2px; }
+.btn-entregar:hover { background: #14407a; }
+
+.alert-error { color: #c0392b; font-size: 13px; font-weight: 700; margin: 8px 0; }
+.no-encontrado { color: #c00; font-weight: 700; font-size: 15px; }
+.vacio { color: #6b7280; font-style: italic; font-size: 14px; }

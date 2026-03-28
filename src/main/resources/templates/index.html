@@ -5,30 +5,24 @@
 <header th:replace="~{fragments :: header}"></header>
 <nav th:replace="~{fragments :: nav}"></nav>
 <main>
-    <aside class="login-panel">
+    <div class="login-wrapper">
+        <div class="login-title-bar">INGRESO</div>
         <div class="login-card">
-            <img th:src="@{/images/login.png}" style="width:80px; display:block; margin: 0 auto 12px;">
-            <h2>Ingreso</h2>
-            <div class="alert-error" th:if="${param.error}">
-                Usuario o contraseña incorrectos.
-            </div>
+            <img th:src="@{/images/login.png}" alt="Usuario">
+            <div class="alert-error" th:if="${param.error}">Usuario o contraseña incorrectos.</div>
             <form th:action="@{/login}" method="post">
                 <div class="field">
-                    <label for="usuario">Usuario</label>
-                    <input id="usuario" type="text" name="usuario" required>
+                    <label for="usuario">Id</label>
+                    <input id="usuario" type="text" name="usuario" required autocomplete="username">
                 </div>
                 <div class="field">
-                    <label for="clave">Contraseña</label>
-                    <input id="clave" type="password" name="clave" required>
+                    <label for="clave">Clave</label>
+                    <input id="clave" type="password" name="clave" required autocomplete="current-password">
                 </div>
                 <button type="submit" class="btn-login">Ingresar</button>
             </form>
         </div>
-    </aside>
-    <section class="home-content">
-        <h1>Plan Paciente</h1>
-        <p class="subtitulo">Sistema de gestión de regalías para farmacias.</p>
-    </section>
+    </div>
 </main>
 <footer th:replace="~{fragments :: footer}"></footer>
 </body>
