@@ -11,7 +11,10 @@
 </head>
 
 <header th:fragment="header">
-    <a class="header-brand" th:href="@{/}">Plan Paciente</a>
+    <a class="header-brand" th:href="@{/}">
+        <img th:src="@{/images/header.jpg}" style="height:40px; margin-right:10px; vertical-align:middle;">
+        Plan Paciente
+    </a>
 </header>
 
 <nav th:fragment="nav">
