@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Plan Paciente', '/css/plan.css')}"></head>
+<body>
+<header th:replace="~{fragments :: header}"></header>
+<nav th:replace="~{fragments :: nav}"></nav>
+<main>
+    <div class="card">
+        <h1>Plan Paciente</h1>
+
+        <!-- BÚSQUEDA -->
+        <form th:action="@{/plan}" method="get" class="buscar-form">
+            <div class="buscar-row">
+                <label for="cedula">Cédula del paciente</label>
+                <input id="cedula" type="text" name="cedula"
+                       th:value="${cedula}" placeholder="Ej: 111" required>
+                <button type="submit" class="btn-buscar">Buscar</button>
+            </div>
+        </form>
+
+        <!-- ERROR REGALÍA -->
+        <div class="alert-error" th:if="${error != null}" th:text="${error}"></div>
+
+        <!-- RESULTADO -->
+        <div th:if="${cedula != null}">
+
+            <p class="no-encontrado" th:if="${paciente == null}">Paciente no encontrado</p>
+
+            <div th:if="${paciente != null}">
+                <h2>
+                    Paciente: <span th:text="${paciente.nombre}"></span>
+                    <span class="cedula-badge" th:text="'(' + ${paciente.id} + ')'"></span>
+                </h2>
+
+                <table th:if="${medicamentos != null and medicamentos.size() > 0}">
+                    <thead>
+                    <tr>
+                        <th>Medicamento</th>
+                        <th>Plan</th>
+                        <th>Acumuladas</th>
+                        <th>Registrar Compra</th>
+                        <th>Entregar Regalía</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="pm : ${medicamentos}">
+                        <td th:text="${pm.medicamento.nombre}"></td>
+                        <td th:text="${pm.medicamento.plan} + '+1'"></td>
+                        <td>[<span th:text="${pm.dosisafavor}"></span>]</td>
+                        <td>
+                            <form th:action="@{/plan/compra}" method="post" class="inline-form">
+                                <input type="hidden" name="pmId" th:value="${pm.id}">
+                                <input type="hidden" name="cedula" th:value="${cedula}">
+                                <input type="number" name="cantidad" min="1" value="1" class="input-cant">
+                                <button type="submit" class="btn-registrar">Registrar</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form th:action="@{/plan/regalia}" method="post" class="inline-form">
+                                <input type="hidden" name="pmId" th:value="${pm.id}">
+                                <input type="hidden" name="cedula" th:value="${cedula}">
+                                <button type="submit" class="btn-entregar">Entregar</button>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <p class="vacio" th:if="${medicamentos == null or medicamentos.size() == 0}">
+                    Este paciente no tiene medicamentos asociados.
+                </p>
+            </div>
+        </div>
+    </div>
+</main>
+<footer th:replace="~{fragments :: footer}"></footer>
+</body>
+</html>
+
