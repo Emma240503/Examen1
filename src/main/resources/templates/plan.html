@@ -7,24 +7,24 @@
 <main>
     <div class="card">
 
-        <!-- FARMACIA -->
+
         <h1 class="farmacia-titulo">
             <span class="label">Farmacia: </span>
             <span class="nombre" th:text="${session.farmaciaNombre}"></span>
         </h1>
 
-        <!-- BÚSQUEDA -->
+
         <form th:action="@{/plan}" method="get">
             <div class="buscar-row">
                 <label for="cedula">Paciente:</label>
-                <input id="cedula" type="text" name="cedula" th:value="${cedula}" placeholder="Ej: 111">
+                <input id="cedula" type="text" name="cedula" th:value="${cedula}">
                 <button type="submit" class="btn-buscar">Buscar</button>
                 <span class="paciente-nombre" th:if="${paciente != null}" th:text="${paciente.nombre}"></span>
                 <span class="no-encontrado" th:if="${cedula != null and paciente == null}">Paciente no encontrado</span>
             </div>
         </form>
 
-        <!-- MEDICAMENTOS -->
+
         <div th:if="${paciente != null and medicamentos != null and medicamentos.size() > 0}">
 
             <div class="alert-error" th:if="${error != null}" th:text="${error}"></div>

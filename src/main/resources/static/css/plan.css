@@ -4,14 +4,14 @@ main { flex: 1; padding: 24px 40px; }
 
 .farmacia-titulo { margin: 0 0 20px; font-size: 28px; font-weight: 700; }
 .farmacia-titulo .label { color: #e05a1e; }
-.farmacia-titulo .nombre { color: #1a4f8a; }
+.farmacia-titulo .nombre { color: #8a1a52; }
 
 .buscar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
 .buscar-row label { font-weight: 700; color: #c0392b; font-size: 14px; }
 .buscar-row input[type="text"] { padding: 6px 10px; border: 1px solid #aaa; border-radius: 2px; font-size: 14px; width: 160px; }
-.btn-buscar { padding: 6px 14px; background: #1a4f8a; border: none; color: #fff; font-size: 14px; font-weight: 700; cursor: pointer; }
-.btn-buscar:hover { background: #14407a; }
-.paciente-nombre { font-weight: 700; color: #1a4f8a; font-size: 15px; }
+.btn-buscar { padding: 6px 14px; background: #8a1a52; border: none; color: #fff; font-size: 14px; font-weight: 700; cursor: pointer; }
+.btn-buscar:hover { background: #8a1a52; }
+.paciente-nombre { font-weight: 700; color: #371f2f; font-size: 15px; }
 
 .med-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
 .med-row label { font-weight: 700; color: #c0392b; font-size: 14px; }
@@ -20,10 +20,10 @@ main { flex: 1; padding: 24px 40px; }
 .cant-label { font-weight: 700; color: #c0392b; font-size: 14px; }
 
 .acciones-row { display: flex; gap: 10px; margin-top: 8px; }
-.btn-registrar { padding: 7px 16px; background: #1a4f8a; border: none; color: #fff; font-size: 13px; font-weight: 700; cursor: pointer; border-radius: 2px; }
-.btn-registrar:hover { background: #14407a; }
-.btn-entregar { padding: 7px 16px; background: #1a4f8a; border: none; color: #fff; font-size: 13px; font-weight: 700; cursor: pointer; border-radius: 2px; }
-.btn-entregar:hover { background: #14407a; }
+.btn-registrar { padding: 7px 16px; background: #8a1a52; border: none; color: #fff; font-size: 13px; font-weight: 700; cursor: pointer; border-radius: 2px; }
+.btn-registrar:hover { background: #8a1a52; }
+.btn-entregar { padding: 7px 16px; background: #8a1a52; border: none; color: #fff; font-size: 13px; font-weight: 700; cursor: pointer; border-radius: 2px; }
+.btn-entregar:hover { background: #371f2f; }
 
 .alert-error { color: #c0392b; font-size: 13px; font-weight: 700; margin: 8px 0; }
 .no-encontrado { color: #c00; font-weight: 700; font-size: 15px; }

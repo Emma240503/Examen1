@@ -45,7 +45,7 @@ public class Service {
         PacienteMedicamento pm = pmRepo.findById(pmId).orElseThrow();
         int plan = pm.getMedicamento().getPlan();
         if (pm.getDosisafavor() < plan) {
-            return "No hay suficientes dosis. Necesita " + plan + ", tiene " + pm.getDosisafavor();
+            return "Dosis insuficientes. Necesita " + plan + ", tiene " + pm.getDosisafavor();
         }
         pm.setDosisafavor(pm.getDosisafavor() - plan);
         pmRepo.save(pm);

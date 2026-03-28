@@ -15,11 +15,7 @@ public class PlanController {
     private Service service;
 
     @GetMapping("/plan")
-    public String plan(
-            @RequestParam(required = false) String cedula,
-            @RequestParam(required = false) String error,
-            HttpSession session,
-            Model model) {
+    public String plan(@RequestParam(required = false) String cedula, @RequestParam(required = false) String error, HttpSession session, Model model) {
 
         if (session.getAttribute("usuarioId") == null) return "redirect:/";
 
@@ -37,11 +33,7 @@ public class PlanController {
     }
 
     @PostMapping("/plan/compra")
-    public String registrarCompra(
-            @RequestParam Integer pmId,
-            @RequestParam int cantidad,
-            @RequestParam String cedula,
-            HttpSession session) {
+    public String registrarCompra(@RequestParam Integer pmId, @RequestParam int cantidad, @RequestParam String cedula, HttpSession session) {
 
         if (session.getAttribute("usuarioId") == null) return "redirect:/";
         service.registrarCompra(pmId, cantidad);
@@ -49,10 +41,7 @@ public class PlanController {
     }
 
     @PostMapping("/plan/regalia")
-    public String entregarRegalia(
-            @RequestParam Integer pmId,
-            @RequestParam String cedula,
-            HttpSession session) {
+    public String entregarRegalia(@RequestParam Integer pmId, @RequestParam String cedula, HttpSession session) {
 
         if (session.getAttribute("usuarioId") == null) return "redirect:/";
         String errorMsg = service.entregarRegalia(pmId);
