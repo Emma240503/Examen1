@@ -11,7 +11,7 @@
         <!-- BÚSQUEDA -->
         <form th:action="@{/plan}" method="get" class="buscar-form">
             <div class="buscar-row">
-                <label for="cedula">Cédula del paciente</label>
+                <label for="cedula">ID del paciente</label>
                 <input id="cedula" type="text" name="cedula"
                        th:value="${cedula}" placeholder="Ej: 111" required>
                 <button type="submit" class="btn-buscar">Buscar</button>
@@ -39,7 +39,7 @@
                         <th>Plan</th>
                         <th>Acumuladas</th>
                         <th>Registrar Compra</th>
-                        <th>Entregar Regalía</th>
+                        <th>Entregar </th>
                     </tr>
                     </thead>
                     <tbody>
